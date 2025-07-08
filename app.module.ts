@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
-import { configuration } from './config/configuration';
-import { TasksModule } from './tasks/tasks.module';
-import { UsersModule } from './users/users.module';
+import { configuration } from 'src/config/configuration';
+import { TasksModule } from 'src/tasks/tasks.module';
+import { UsersModule } from 'src/users/users.module';
 
 @Module({
   imports: [
@@ -24,9 +23,8 @@ import { UsersModule } from './users/users.module';
       database: process.env.PGDATABASE,
       ssl: process.env.PGSSL === 'true',
       autoLoadEntities: true,
-      synchronize: process.env.NODE_ENV !== 'production',
+      synchronize: true,
       logging: false,
-      namingStrategy: new SnakeNamingStrategy(),
     }),
   ],
   controllers: [],
