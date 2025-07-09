@@ -9,11 +9,11 @@ export type TConfig = TDefaultConfig & TCustomConfig;
 
 export const configuration = async (): Promise<TConfig> => {
   const { config: baseConfig }: { config: TDefaultConfig } = await import(
-    `${__dirname}/envs/default`
+    `${__dirname}/default`
   );
 
   const { config: customConfig }: { config: TCustomConfig } = await import(
-    `${__dirname}/envs/${getEnv()}`
+    `${__dirname}/${getEnv()}`
   );
 
   return mergeDeepRight(baseConfig, customConfig);

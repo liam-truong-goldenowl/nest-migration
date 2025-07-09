@@ -15,7 +15,12 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "prepare": "husky",
     "pre-commit": "lint-staged",
-    "commitlint": "commitlint --edit"
+    "commitlint": "commitlint --edit",
+    "typeorm": "NODE_OPTIONS='-r tsconfig-paths/register' typeorm-ts-node-commonjs -d ormconfig.ts",
+    "migration": "MIGRATION_DIR='./src/database/migrations' node ./scripts/migrate.js",
+    "migration:generate": "npm run migration generate",
+    "migration:up": "npm run migration -- up",
+    "migration:down": "npm run migration -- down"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
@@ -62,7 +67,8 @@
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.20.0"
+    "typescript-eslint": "^8.20.0",
+    "yargs": "^18.0.0"
   },
   "jest": {
     "moduleFileExtensions": [
