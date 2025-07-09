@@ -11,7 +11,6 @@ export const configuration = async (): Promise<TConfig> => {
   const { config: baseConfig }: { config: TDefaultConfig } = await import(
     `${__dirname}/envs/default`
   );
-
   const { config: customConfig }: { config: TCustomConfig } = await import(
     `${__dirname}/envs/${getEnv()}`
   );
