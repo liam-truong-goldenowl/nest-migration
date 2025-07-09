@@ -1,13 +1,8 @@
-import { Column, Entity, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 
-import { User } from '@/api/users/entities/user.entity';
+import { TaskStatus } from '@/common/enums';
 import { BaseEntity } from '@/common/entities/base.entity';
-
-export enum TaskStatus {
-  PENDING = 'pending',
-  IN_PROGRESS = 'in-progress',
-  COMPLETED = 'completed',
-}
+import { User } from '@/api/users/entities/user.entity';
 
 @Entity('tasks')
 export class Task extends BaseEntity {
@@ -15,7 +10,7 @@ export class Task extends BaseEntity {
   title: string;
 
   @Column({ nullable: true })
-  description: string;
+  description?: string;
 
   @Column({
     type: 'enum',
@@ -25,5 +20,6 @@ export class Task extends BaseEntity {
   status: TaskStatus;
 
   @ManyToOne(() => User, (user) => user.tasks)
+  @JoinColumn({ name: 'user_id' })
   user: User;
 }

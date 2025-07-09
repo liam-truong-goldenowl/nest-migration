@@ -16,7 +16,5 @@ export const configuration = async (): Promise<TConfig> => {
     `${__dirname}/envs/${getEnv()}`
   );
 
-  const final = mergeDeepRight(baseConfig, customConfig);
-  console.log('final:', final);
-  return final;
+  return mergeDeepRight(baseConfig, customConfig);
 };

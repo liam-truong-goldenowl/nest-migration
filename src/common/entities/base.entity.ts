@@ -1,7 +1,7 @@
 import {
+  UpdateDateColumn,
   CreateDateColumn,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
   BaseEntity as TypeOrmBase,
 } from 'typeorm';
 
@@ -9,9 +9,9 @@ export abstract class BaseEntity extends TypeOrmBase {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 }
