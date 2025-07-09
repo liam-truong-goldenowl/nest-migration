@@ -1,4 +1,4 @@
-export const config = () => ({
+export const config = {
   app: {
     port: process.env.PORT || 3000,
     environment: process.env.NODE_ENV || 'development',
@@ -13,11 +13,8 @@ export const config = () => ({
     password: process.env.DB_PASSWORD ?? 'password',
     database: process.env.DB_NAME ?? 'database',
 
-    entities: [`${__dirname}/../**/*.entity{.ts,.js}`],
-    migrations: [`${__dirname}/../migrations/**/*{.ts,.js}`],
-
     logging: false,
     synchronize: false,
     autoLoadEntities: true,
   },
-});
+};

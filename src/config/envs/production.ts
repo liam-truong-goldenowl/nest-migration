@@ -1,5 +1,5 @@
-export const config = () => ({
+export const config = {
   app: {
     environment: 'production',
   },
-});
+};
