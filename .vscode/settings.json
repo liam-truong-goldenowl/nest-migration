@@ -1,6 +1,7 @@
 {
   "cSpell.words": [
     "commitlint",
+    "ormconfig",
     "PGDATABASE",
     "PGHOST",
     "PGPASSWORD",

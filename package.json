@@ -1,6 +1,5 @@
 {
   "name": "task-flow",
-  "type": "module",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -16,7 +15,12 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "prepare": "husky",
     "pre-commit": "lint-staged",
-    "commitlint": "commitlint --edit"
+    "commitlint": "commitlint --edit",
+    "typeorm": "NODE_OPTIONS='-r tsconfig-paths/register' typeorm-ts-node-commonjs -d ormconfig.ts",
+    "migration": "MIGRATION_DIR='./src/database/migrations' node ./scripts/migrate.js",
+    "migration:generate": "npm run migration generate",
+    "migration:up": "npm run migration -- up",
+    "migration:down": "npm run migration -- down"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
@@ -25,6 +29,9 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/typeorm": "^11.0.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.2",
+    "joi": "^17.13.3",
     "pg": "^8.16.3",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
@@ -36,6 +43,7 @@
     "@commitlint/config-conventional": "^19.8.1",
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.18.0",
+    "@faker-js/faker": "^9.9.0",
     "@nestjs/cli": "^11.0.0",
     "@nestjs/schematics": "^11.0.0",
     "@nestjs/testing": "^11.0.1",
@@ -60,7 +68,8 @@
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.20.0"
+    "typescript-eslint": "^8.20.0",
+    "yargs": "^18.0.0"
   },
   "jest": {
     "moduleFileExtensions": [
