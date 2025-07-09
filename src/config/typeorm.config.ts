@@ -20,5 +20,5 @@ const config = {
   namingStrategy: new SnakeNamingStrategy(),
 } satisfies TypeOrmModuleOptions;
 
-export const typeorm = registerAs('typeorm', () => config);
+export const typeormConfig = registerAs('typeorm', () => config);
 export const connectionSource = new DataSource(config as DataSourceOptions);
