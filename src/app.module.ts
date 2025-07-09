@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 import { configuration } from './config/configuration';
+import { typeorm } from './config/typeorm';
 import { TasksModule } from './tasks/tasks.module';
 import { UsersModule } from './users/users.module';
 
@@ -13,20 +13,12 @@ import { UsersModule } from './users/users.module';
     UsersModule,
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [configuration],
+      load: [configuration, typeorm],
     }),
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.PGHOST,
-      port: parseInt(process.env.PGPORT || '5432', 10),
-      username: process.env.PGUSER,
-      password: process.env.PGPASSWORD,
-      database: process.env.PGDATABASE,
-      ssl: process.env.PGSSL === 'true',
-      autoLoadEntities: true,
-      synchronize: process.env.NODE_ENV !== 'production',
-      logging: false,
-      namingStrategy: new SnakeNamingStrategy(),
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) =>
+        configService.get('typeorm') as TypeOrmModuleOptions,
     }),
   ],
   controllers: [],

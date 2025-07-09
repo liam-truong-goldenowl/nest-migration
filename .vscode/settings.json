@@ -1,10 +1,11 @@
 {
   "cSpell.words": [
-    "PGHOST",
-    "PGPORT",
-    "PGUSER",
+    "commitlint",
     "PGDATABASE",
+    "PGHOST",
     "PGPASSWORD",
+    "PGPORT",
     "PGSSL",
+    "PGUSER"
   ]
 }

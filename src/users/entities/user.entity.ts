@@ -10,6 +10,9 @@ export class User extends BaseEntity {
   @Column({ unique: true })
   email: string;
 
+  @Column({ nullable: true })
+  avatarUrl: string;
+
   @OneToMany(() => Task, (task) => task.user)
   tasks: Task[];
 }
