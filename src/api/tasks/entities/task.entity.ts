@@ -19,6 +19,9 @@ export class Task extends BaseEntity {
   })
   status: TaskStatus;
 
+  @Column({ name: 'due_date', nullable: true })
+  dueDate?: Date;
+
   @ManyToOne(() => User, (user) => user.tasks)
   @JoinColumn({ name: 'user_id' })
   user: User;
